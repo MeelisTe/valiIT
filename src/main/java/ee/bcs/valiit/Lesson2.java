@@ -1,5 +1,6 @@
 package ee.bcs.valiit;
 
+import java.io.FileReader;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
@@ -150,6 +151,8 @@ public class Lesson2 {
             b) prindib konsoolile päeva, mil külastajaid oli kõige rohkem.
             Faili asukoht tuleb programmile ette anda käsurea parameetrina.
          */
+
+
     }
 
     public static void exercise7() {

@@ -58,11 +58,12 @@ public class TestController {
     public int[] Lesson2excercise1(@PathVariable("exercise1") int[]id) {
         int[] a = Lesson2.exercise1(id);
         return a;
+    }
 
         //Lesson 3:
 
     @GetMapping("/Lesson3sum/{min1}/{min2}/")
-    public int test(@PathVariable("min1") Integer x, @PathVariable("min2") Integer y) {
+    public int test(@PathVariable("min1") int x, @PathVariable("min2") Integer y) {
         int a = Lesson3.sum(x, y);
         return a;
 
