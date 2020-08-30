@@ -18,7 +18,6 @@ public class Lesson3Hard {
             int i = random.nextInt(100);
             int x = 0; // kasutaja sisestatud number
 
-
             while (x != i) {
 
                 for (int a = 1; a <= 10; a++) {
@@ -31,7 +30,7 @@ public class Lesson3Hard {
                     } else if (i < x) {
                         System.out.println("Arv on vaiksem kui sisestatud number, jaanud " + (10 - a) + " korda");
                     } else {
-                        System.out.println("Arvasid ara oige numbri: " + i);
+                        System.out.println("Arvasid ara oige numbri: " + "\"" + i + "\"" + " - " + a + " katsega");
                     }
                 }
             }
