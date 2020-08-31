@@ -1,5 +1,6 @@
 package ee.bcs.valiit;
 
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -77,6 +78,59 @@ public class Lesson3Hard {
     public static String morseCode(String text) {
         // TODO kirjuta programm, mis tagastab sisestatud teksti morse koodis (https://en.wikipedia.org/wiki/Morse_code)
         // Kasuta sümboleid . ja -
+
+        HashMap<String, String> codes = new HashMap<String, String>();
+
+
+        codes.put("a", ".-");
+        codes.put("b", "-...");
+        codes.put("c", "-.-.");
+        codes.put("d", "-..");
+        codes.put("e", ".");
+        codes.put("f", "..-.");
+        codes.put("g", "--.");
+        codes.put("h", "....");
+        codes.put("i", "..");
+        codes.put("j", ".---");
+        codes.put("k", "-.-");
+        codes.put("l", ".-..");
+        codes.put("m", "--");
+        codes.put("n", "-.");
+        codes.put("o", "---");
+        codes.put("p", ".--.");
+        codes.put("q", "--.-");
+        codes.put("r", ".-.");
+        codes.put("s", "...");
+        codes.put("t", "-");
+        codes.put("u", "..-");
+        codes.put("v", "...-");
+        codes.put("w", ".--");
+        codes.put("x", "-..-");
+        codes.put("y", "-.--");
+        codes.put("z", "--..");
+        codes.put("0", "-----");
+        codes.put("1", ".----");
+        codes.put("2", "..---");
+        codes.put("3", "...--");
+        codes.put("4", "....-");
+        codes.put("5", ".....");
+        codes.put("6", "-....");
+        codes.put("7", "--...");
+        codes.put("8", "---..");
+        codes.put("9", "----.");
+        codes.put(".", ".-.-.-");
+        codes.put(",", "--..--");
+        codes.put("?", "..--..");
+        codes.put("-", "-....-");
+        codes.put("/", "-..-.");
+        codes.put(":", "---...");
+        codes.put("'", ".----.");
+        codes.put(")", "-.--.-");
+        codes.put(";", "-.-.-");
+        codes.put("(", "-.--.");
+        codes.put("=", "-...-");
+        codes.put("@", ".--.-.");
+
         return "";
 
         //Hashmap
