@@ -14,18 +14,33 @@ public class TestController {
     private static final List<Employee> employees = new ArrayList();
 
     @GetMapping("employees")
-    public List<Employee> getAllEmployees(){
+    public List<Employee> getAllEmployees() {
         return employees;
     }
 
+    @GetMapping("employee/{id}")
+    public Employee getEmployee(@PathVariable("id") int id) { //kasutada kindlasti antud juhul PathVariable
+        return employees.get(id);
+    }
+
+    @PutMapping("employee/{id}")
+    public void changeEmployee(@PathVariable("id") int id, @RequestBody Employee employee) {
+        employees.set(id, employee);
+    }
+
     @PostMapping("employee")
-    public void addEmployee(@RequestBody Employee employee){
+    public void addEmployee(@RequestBody Employee employee) {
         employees.add(employee);
     }
 
+    @DeleteMapping("employee/{id}")
+    public void deleteEmployee(@PathVariable("id") int id) {
+        employees.remove(id);
+    }
 
-
-
+    // put - asendame
+    // post - lisamine
+    // delete - eemaldame
 
 
     //Lesson1MathUtil:
