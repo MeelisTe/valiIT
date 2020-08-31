@@ -3,13 +3,30 @@ package ee.bcs.valiit.controller;
 import ee.bcs.valiit.Lesson1MathUtil;
 import ee.bcs.valiit.Lesson2;
 import ee.bcs.valiit.Lesson3;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class TestController {
+
+    private static final List<Employee> employees = new ArrayList();
+
+    @GetMapping("employees")
+    public List<Employee> getAllEmployees(){
+        return employees;
+    }
+
+    @PostMapping("employee")
+    public void addEmployee(@RequestBody Employee employee){
+        employees.add(employee);
+    }
+
+
+
+
+
 
     //Lesson1MathUtil:
 
@@ -55,12 +72,12 @@ public class TestController {
     //Lesson 2:
 
     @GetMapping("/Lesson2excercise1/{exercise1}/")
-    public int[] Lesson2excercise1(@PathVariable("exercise1") int[]id) {
+    public int[] Lesson2excercise1(@PathVariable("exercise1") int[] id) {
         int[] a = Lesson2.exercise1(id);
         return a;
     }
 
-        //Lesson 3:
+    //Lesson 3:
 
     @GetMapping("/Lesson3sum/{min1}/{min2}/")
     public int test(@PathVariable("min1") int x, @PathVariable("min2") Integer y) {
@@ -69,6 +86,23 @@ public class TestController {
 
         // nt. kui x = 4 ja y = 5, siis http://localhost:8080/Lesson3sum/4/5/
         // ehk "/Lesson3sum/{min1}/{min2}/" ja asendada {min1} - 4 ja {min2} - 5
+    }
+
+    //GetSet:
+
+    @GetMapping("dto")
+    public Employee dtoTest() {
+        Employee employee = new Employee();
+        employee.setName("John");
+        employee.setAge(20);
+
+        return employee;
+    }
+
+    @PostMapping("dto")
+    public void postTest(@RequestBody Employee employee) {
+        System.out.println(employee.getName());
+        System.out.println(employee.getAge());
     }
 
 

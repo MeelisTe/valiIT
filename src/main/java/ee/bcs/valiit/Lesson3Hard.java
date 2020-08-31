@@ -35,6 +35,10 @@ public class Lesson3Hard {
                 }
             }
 
+        } else if (funktsioon.equalsIgnoreCase("evenFibonacci")) {
+            System.out.println(("Sisesta üks arv, arvutame fibonacci jada paarisarvude summa selle arvuni."));
+            int x = scanner.nextInt();
+            System.out.println(evenFibonacci(x));
         }
 
     }
@@ -42,6 +46,21 @@ public class Lesson3Hard {
 
     public static int evenFibonacci(int x) {
         // TODO liida kokku kõik paaris fibonacci arvud kuni numbrini x
+        int fib0 = 0;
+        int fib1 = 1;
+        int result;
+
+        System.out.println("Fibonacci jada on ");
+        for (int i = 0; i < x; i++) {
+            if (i <= 1)
+                result = i;
+            else {
+                result = fib0 + fib1;
+                fib0 = fib1;
+                fib1 = result;
+            }
+            System.out.println(result);
+        }
         return 0;
     }
 
@@ -51,6 +70,7 @@ public class Lesson3Hard {
         // ja kasutaja peab saama uuesti arvata
         // numbri ära aramise korral peab programm välja trükkima mitu katset läks numbri ära arvamiseks
 
+// Tehtud
 
     }
 
@@ -58,5 +78,7 @@ public class Lesson3Hard {
         // TODO kirjuta programm, mis tagastab sisestatud teksti morse koodis (https://en.wikipedia.org/wiki/Morse_code)
         // Kasuta sümboleid . ja -
         return "";
+
+        //Hashmap
     }
 }
