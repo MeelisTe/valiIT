@@ -1,14 +1,20 @@
 package ee.bcs.valiit.controller;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 public class BankAccount {
     private String accountNr;
-    private int amount;
+    private BigDecimal amount;
+
+    private List<Transfer> transfers;
+    private String receiver;
 
     public void setAccountNr(String accountNr) {
         this.accountNr = accountNr;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
@@ -16,9 +22,11 @@ public class BankAccount {
         return accountNr;
     }
 
-    public int getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
+
 }
+
 
 
