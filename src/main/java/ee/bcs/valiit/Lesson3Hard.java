@@ -50,6 +50,7 @@ public class Lesson3Hard {
         int fib0 = 0;
         int fib1 = 1;
         int result;
+        int finalresult = 0;
 
         System.out.println("Fibonacci jada on ");
         for (int i = 0; i < x; i++) {
@@ -61,8 +62,13 @@ public class Lesson3Hard {
                 fib1 = result;
             }
             System.out.println(result);
+
+            if (x % 2 ==0){
+                finalresult += result;
+            }
+
         }
-        return 0;
+        return finalresult;
     }
 
     public static void randomGame() {
