@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -15,7 +16,7 @@ public class BankController {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    @GetMapping("sqltest")
+    @GetMapping("sqltest") // SQL
     public String testSql() {
         String sql = "SELECT account_nr FROM account WHERE id = :id";
         Map<String, Object> paramMap = new HashMap();
@@ -24,7 +25,7 @@ public class BankController {
         return vastus;
     }
 
-    @PutMapping("sqltest")
+    @PutMapping("sqltest") // SQL
     public void testSql2() {
         String sql = "UPDATE account SET balance = :balance WHERE id = :id";
         Map<String, Object> paramMap = new HashMap();
@@ -61,7 +62,7 @@ public class BankController {
 
         }
     */
-    @GetMapping("account/{accountNr}")
+    @GetMapping("account/{accountNr}") // SQL
     public String getAccount(@PathVariable("accountNr") String accountNr) {
         String sql = "SELECT account_nr FROM account WHERE account_nr = :account_nr";
         Map<String, Object> paramMap = new HashMap();
@@ -79,7 +80,7 @@ public class BankController {
     }
   */
 
-    @PutMapping("account/deposit/{accountNr}")
+    @PutMapping("account/deposit/{accountNr}") // SQL
     public void depositMoney(@PathVariable("accountNr") String accountNr, @RequestBody BigDecimal amount) {
         String sql = "UPDATE account SET balance = balance + :balance WHERE account_nr = :account_nr";
         Map<String, Object> paramMap = new HashMap();
@@ -87,12 +88,12 @@ public class BankController {
         paramMap.put("account_nr", accountNr);
         jdbcTemplate.update(sql, paramMap);
     }
-}
+
 
 
  /*  @PutMapping("account/withdraw/{accountNr}") // - PutMapping - saame muuta(üle kirjutada) infot
     public BigDecimal withdrawMoney(@PathVariable("accountNr") String accountNr, @RequestBody BigDecimal amount) {
-        BigDecimal accountbalance = account.get(accountNr); // nt. BigDecimal accountbalance = new BigDecimal(val: "10");
+        BigDecimal accountbalance = account.get(accountNr); // nt. BigDecimal accountbalance = new BigDecimal(val: "10"); accountbalance(BigDecimal) võtame välja konto jäägi account.get käsuga kontolt (accountNr)
         if (accountbalance.compareTo(amount) > 0) {         // võrdleme kas kontol on piisavalt raha
             System.out.println("Väljastan: " + amount);
             account.put(accountNr, account.get(accountNr).subtract(amount));
@@ -103,19 +104,35 @@ public class BankController {
         }
    */     //  account.put(accountNr, account.get(accountNr).subtract(amount));
 
-
-    @PutMapping("account/deposit/{accountNr}")
-       public void depositMoney(@PathVariable("accountNr") String accountNr, @RequestBody BigDecimal amount) {
-           String sql = "UPDATE account SET balance = balance + :amount WHERE account_nr = :account_nr";
+    /*   @PutMapping("account/withdraw/{accountNr}") // SQL
+       public void withdrawMoney(@PathVariable("accountNr") String accountNr, @RequestBody BigDecimal amount) {
+           String sql = "UPDATE account SET balance = balance - :balance WHERE account_nr = :account_nr";
            Map<String, Object> paramMap = new HashMap();
            paramMap.put("balance", amount);
            paramMap.put("account_nr", accountNr);
            jdbcTemplate.update(sql, paramMap);
        }
+   */
+    @PutMapping("account/withdraw/{accountNr}") // SQL
+    public String withdrawMoney(@PathVariable("accountNr") String accountNr, @RequestBody BigDecimal amount) {
+        String sql = "SELECT balance FROM account WHERE account_nr = :account_nr";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("account_nr", accountNr);
+        BigDecimal accountbalance = jdbcTemplate.queryForObject(sql, paramMap, BigDecimal.class); // nt. BigDecimal accountbalance = new BigDecimal(val: "10");
 
+        if (accountbalance.compareTo(amount) > 0) {         // võrdleme kas kontol on piisavalt raha
+            String sql2 = "UPDATE account SET balance = balance - :balance WHERE account_nr = :account_nr";
+            paramMap.put("balance", amount);
+            paramMap.put("account_nr", accountNr);
+            jdbcTemplate.update(sql2, paramMap);
+            return "Transfer successful";
+        } else {
+            return "Transfer failed, not enough balance.";
+        }
     }
 
-    @PutMapping("account/transfer/{accountNr1}/{accountNr2}") // - PutMapping - saame muuta(üle kirjutada) infot
+
+ /*   @PutMapping("account/transfer/{accountNr1}/{accountNr2}") // - PutMapping - saame muuta(üle kirjutada) infot
     public TransferMoneyResponse transferMoney(@PathVariable("accountNr1") String accountNr1, @PathVariable("accountNr2") String accountNr2, @RequestBody BigDecimal amount) {
         TransferMoneyResponse response = new TransferMoneyResponse();
         BigDecimal accountbalance = account.get(accountNr1); // nt. BigDecimal accountbalance = new BigDecimal(val: "10");
@@ -137,11 +154,46 @@ public class BankController {
         return response;
 
     }
-        }
+*/
+
+    @PutMapping("account/transfer/{accountNr1}/{accountNr2}") // SQL
+    public void transferMoney(@PathVariable("accountNr1") String accountNr1, @PathVariable("accountNr2") String
+            accountNr2, @RequestBody BigDecimal amount) {
+        String sql1 = "UPDATE account SET balance = balance - :balance WHERE account_nr = :account_nr1";
+        String sql2 = "UPDATE account SET balance = balance + :balance WHERE account_nr = :account_nr2";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("balance", amount);
+        paramMap.put("account_nr1", accountNr1);
+        paramMap.put("account_nr2", accountNr2);
+        jdbcTemplate.update(sql1, paramMap);
+        jdbcTemplate.update(sql2, paramMap);
+    }
 
 
-    // withdraw - PutMapping
-    // deposit - PutMapping
+    @GetMapping("allaccounts") // SQL
+    public List<BankAccount> allaccounts() {
+        String sql = "SELECT * FROM account"; //select * - võtame kõik väärtused antud List'ist
+        return jdbcTemplate.query(sql, new HashMap(), new ObjectRowMapper()); //võtame sql väärtuse sellest funktsioonist, paneme selle Hashmap kujule, loome uue klassi et esitleda seda objektina)
+    }
+
+ /*   @GetMapping("allaccounts1") // SQL
+    public List<BankAccount> allaccounts1() {
+        String sql = "SELECT * FROM account";
+        return jdbcTemplate.query(sql, new HashMap(), new ObjectRowMapper2());
+    }
+*/
+
+
+}
+
+
+// Ülesanne - tagasta kõik kontod andmebaasist
+
+// @GetMapping - @RequestParam - kui tundub segane, siis kasutada lihtsuse mõttes esialgu ainult neid kahte
+
+
+// withdraw - PutMapping
+// deposit - PutMapping
 
 
 

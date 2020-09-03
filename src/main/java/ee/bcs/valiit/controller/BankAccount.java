@@ -7,6 +7,7 @@ public class BankAccount {
     private String accountNr;
     private BigDecimal amount;
 
+
     private List<Transfer> transfers;
     private String receiver;
 
