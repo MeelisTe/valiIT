@@ -157,16 +157,27 @@ public class BankController {
 */
 
     @PutMapping("account/transfer/{accountNr1}/{accountNr2}") // SQL
-    public void transferMoney(@PathVariable("accountNr1") String accountNr1, @PathVariable("accountNr2") String
+    public String transferMoney(@PathVariable("accountNr1") String accountNr1, @PathVariable("accountNr2") String
             accountNr2, @RequestBody BigDecimal amount) {
-        String sql1 = "UPDATE account SET balance = balance - :balance WHERE account_nr = :account_nr1";
-        String sql2 = "UPDATE account SET balance = balance + :balance WHERE account_nr = :account_nr2";
+        String sql = "SELECT balance FROM account WHERE account_nr = :account_nr";
         Map<String, Object> paramMap = new HashMap();
-        paramMap.put("balance", amount);
-        paramMap.put("account_nr1", accountNr1);
-        paramMap.put("account_nr2", accountNr2);
-        jdbcTemplate.update(sql1, paramMap);
-        jdbcTemplate.update(sql2, paramMap);
+        paramMap.put("account_nr", accountNr1);
+        BigDecimal accountbalance = jdbcTemplate.queryForObject(sql, paramMap, BigDecimal.class);
+
+        if (accountbalance.compareTo(amount) > 0) {         // võrdleme kas kontol on piisavalt raha
+            String sql2 = "UPDATE account SET balance = balance - :balance WHERE account_nr = :account_nr";
+            paramMap.put("balance", amount);
+            paramMap.put("account_nr", accountNr1);
+            jdbcTemplate.update(sql2, paramMap);
+
+            String sql3 = "UPDATE account SET balance = balance + :balance WHERE account_nr = :account_nr";
+            paramMap.put("balance", amount);
+            paramMap.put("account_nr", accountNr2);
+            jdbcTemplate.update(sql3, paramMap);
+            return "Transfer successful";
+        } else {
+            return "Transfer failed, not enough balance.";
+        }
     }
 
 
