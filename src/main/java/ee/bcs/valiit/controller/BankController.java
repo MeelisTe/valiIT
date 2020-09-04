@@ -50,7 +50,7 @@ public class BankController {
     }
 */
     @PostMapping("account") // SQL
-    public void createAccount(@RequestBody BankAccount account1) {
+    public void createAccount(@RequestBody BankAccount account) {
         String sql = "INSERT INTO account(client_id, account_nr, balance) VALUES(100, 552233, 5000)";
         Map<String, Object> paramMap = new HashMap();
         jdbcTemplate.update(sql, paramMap);
@@ -182,17 +182,11 @@ public class BankController {
 
 
     @GetMapping("allaccounts") // SQL
-    public List<BankAccount> allaccounts() {
+    public List allaccounts() {
         String sql = "SELECT * FROM account"; //select * - võtame kõik väärtused antud List'ist
         return jdbcTemplate.query(sql, new HashMap(), new ObjectRowMapper()); //võtame sql väärtuse sellest funktsioonist, paneme selle Hashmap kujule, loome uue klassi et esitleda seda objektina)
     }
 
- /*   @GetMapping("allaccounts1") // SQL
-    public List<BankAccount> allaccounts1() {
-        String sql = "SELECT * FROM account";
-        return jdbcTemplate.query(sql, new HashMap(), new ObjectRowMapper2());
-    }
-*/
 
 
 }
