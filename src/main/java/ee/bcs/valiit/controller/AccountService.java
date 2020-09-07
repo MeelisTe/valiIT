@@ -19,8 +19,8 @@ public class AccountService {
 
 // Ühtegi SQL ei tohi olla service klassis
 
-    public void createAccountUUS() {
-        accountRepository.createAccountUUS();
+    public void createAccountUUS(BigDecimal clientId, String accountNr, BigDecimal balance) {
+        accountRepository.createAccountUUS(clientId, accountNr, balance);
     }
 
 
@@ -57,8 +57,17 @@ public class AccountService {
     }
 
 
-
     public List allAccounts() {
         return accountRepository.allAccounts();
+    }
+
+
+    public void createClient(String firstName, String  lastName) {
+        accountRepository.createClient(firstName, lastName);
+
+    }
+
+
+    public void depositHistory(String accountToId, BigDecimal amount, String accountNr) {
     }
 }

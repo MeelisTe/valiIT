@@ -5,43 +5,43 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet  author="authorName"  id="changelog-1.0">
-        <createTable  tableName="account">
-            <column  name="id"  type="int">
-                <constraints  nullable="true"  primaryKey="true"  unique="false"/>
-            </column>
-            <column  name="client_id"  type="int">
-                <constraints  nullable="true"  primaryKey="false"  unique="false"/>
-            </column>
-            <column  name="balance"  type="int">
-                <constraints  nullable="true"  primaryKey="true"  unique="false"/>
-            </column>
-            <column  name="account_nr"  type="text">
-                <constraints  nullable="true"  primaryKey="true"  unique="false"/>
-            </column>
-        </createTable>
         <createTable  tableName="client">
             <column  name="first_name"  type="text">
-                <constraints  nullable="true"  primaryKey="true"  unique="false"/>
+                <constraints  nullable="true"  primaryKey="false"  unique="false"/>
             </column>
             <column  name="last_name"  type="text">
                 <constraints  nullable="true"  primaryKey="false"  unique="false"/>
             </column>
-            <column  name="id"  type="int">
+            <column  name="id"  type="int" autoIncrement="true">
                 <constraints  nullable="true"  primaryKey="true"  unique="false"/>
             </column>
         </createTable>
+        <createTable  tableName="account">
+            <column  name="id"  type="int"  autoIncrement="true">
+                <constraints  nullable="true"  primaryKey="true"  unique="false"/>
+            </column>
+            <column  name="client_id"  type="int">
+                <constraints  nullable="true"  primaryKey="false"  unique="false" foreignKeyName="fk_account_client" references="client(id)"/>
+            </column>
+            <column  name="balance"  type="int">
+                <constraints  nullable="true"  primaryKey="false"  unique="false"/>
+            </column>
+            <column  name="account_nr"  type="text">
+                <constraints  nullable="true"  primaryKey="false"  unique="false"/>
+            </column>
+        </createTable>
         <createTable  tableName="credit_history">
-            <column  name="id"  type="int">
+            <column  name="id"  type="int" autoIncrement="true">
                 <constraints  nullable="true"  primaryKey="true"  unique="false"/>
             </column>
             <column  name="amount"  type="int">
                 <constraints  nullable="true"  primaryKey="false"  unique="false"/>
             </column>
-            <column  name="account_from_id"  type="text">
-                <constraints  nullable="true"  primaryKey="true"  unique="false"/>
+            <column  name="account_from_id"  type="int">
+                <constraints  nullable="true"  primaryKey="false"  unique="false"/>
             </column>
-            <column  name="account_to_id"  type="text">
-                <constraints  nullable="true"  primaryKey="true"  unique="false"/>
+            <column  name="account_to_id"  type="int">
+                <constraints  nullable="true"  primaryKey="false"  unique="false"/>
             </column>
         </createTable>
     </changeSet>

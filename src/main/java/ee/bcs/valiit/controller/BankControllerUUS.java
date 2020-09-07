@@ -23,7 +23,7 @@ public class BankControllerUUS {
 
     @PostMapping("createAccountUUS") // SQL
     public void createAccountUUS(@RequestBody BankAccount account) {
-        accountService.createAccountUUS();
+        accountService.createAccountUUS(account.getClientId(), account.getAccountNr(), account.getBalance());
 
     }
 
@@ -58,10 +58,15 @@ public class BankControllerUUS {
 
 
     @PostMapping("createClient") // SQL
-  /*  public void createAccount(@RequestBody BankAccount account) {
-        String sql = "INSERT INTO account(client_id, account_nr, balance) VALUES(100, 552233, 5000)";
-        Map<String, Object> paramMap = new HashMap();
-        jdbcTemplate.update(sql, paramMap);
+    public void createClient(@RequestBody CreateClient client) {
+        accountService.createClient(client.getFirstName(), client.getLastName());
     }
+
+    @PostMapping("depositHistory/accountToId")
+    public void depositHistory(@RequestBody Transfer deposit) {
+        accountService.depositHistory(deposit.getAccountToId(), deposit.getAmount(), deposit.getAccountNr());
+    }
+
 }
+
 

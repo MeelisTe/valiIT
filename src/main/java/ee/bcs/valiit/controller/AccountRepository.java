@@ -16,9 +16,12 @@ public class AccountRepository {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
 
-    public void createAccountUUS() {
-        String sql = "INSERT INTO account(client_id, account_nr, balance) VALUES(100, 552233, 5000)";
+    public void createAccountUUS(BigDecimal clientId, String accountNr, BigDecimal balance) {
+        String sql = "INSERT INTO account(client_id, account_nr, balance) VALUES(:client_id, :account_nr, :balance)";
         Map<String, Object> paramMap = new HashMap();
+        paramMap.put("client_id", clientId);
+        paramMap.put("account_nr", accountNr);
+        paramMap.put("balance", balance);
         jdbcTemplate.update(sql, paramMap);
     }
 
@@ -74,6 +77,27 @@ public class AccountRepository {
         String sql = "SELECT * FROM account"; //select * - võtame kõik väärtused antud List'ist
         return jdbcTemplate.query(sql, new HashMap(), new ObjectRowMapper());
     }
+
+    public void createClient(String firstName, String lastName) {
+        String sql = "INSERT INTO client(first_name, last_name) values(:first_name, :last_name)";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("first_name", firstName);
+        paramMap.put("last_name", lastName);
+        jdbcTemplate.update(sql, paramMap);
+
+    }
+
+    public void depositHistory(String account_to_id, BigDecimal amount, String accountNr) {
+        String sql = "UPDATE account SET balance = balance + :balance WHERE account_nr = :account_nr";
+        String sql1 = "INSERT INTO credit_history SET account_to_id WHERE account_to_id = :account_to_id";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("account_to_id", account_to_id);
+        paramMap.put("balance", amount);
+        paramMap.put("account_nr", accountNr);
+        jdbcTemplate.update(sql, paramMap);
+        jdbcTemplate.query(sql1, new HashMap(), new ObjectRowMapper());
+    }
 }
+
 
 

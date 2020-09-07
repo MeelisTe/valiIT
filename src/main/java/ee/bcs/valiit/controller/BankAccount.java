@@ -5,6 +5,25 @@ import java.util.List;
 
 public class BankAccount {
     private String accountNr;
+    private BigDecimal balance;
+    private BigDecimal clientId;
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
+    public BigDecimal getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(BigDecimal clientId) {
+        this.clientId = clientId;
+    }
+
     private BigDecimal amount;
 
 
