@@ -87,9 +87,9 @@ public class AccountRepository {
 
     }
 
-    public void depositHistory(String account_to_id, BigDecimal amount, String accountNr) {
+    public void depositHistory(BigDecimal account_to_id, BigDecimal amount, String accountNr) {
         String sql = "UPDATE account SET balance = balance + :balance WHERE account_nr = :account_nr";
-        String sql1 = "INSERT INTO credit_history SET account_to_id WHERE account_to_id = :account_to_id";
+        String sql1 = "INSERT INTO credit_history WHERE account_to_id = :account_to_id";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("account_to_id", account_to_id);
         paramMap.put("balance", amount);

@@ -33,7 +33,7 @@ public class Transfer {
         this.accountFromId = accountFromId;
     }
 
-    public String getAccountToId() {
+    public BigDecimal getAccountToId() {
         return accountToId;
     }
 

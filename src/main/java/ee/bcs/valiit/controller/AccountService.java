@@ -68,6 +68,7 @@ public class AccountService {
     }
 
 
-    public void depositHistory(String accountToId, BigDecimal amount, String accountNr) {
+    public void depositHistory(BigDecimal accountToId, BigDecimal amount, String accountNr) {
+        accountRepository.depositHistory(accountToId, amount, accountNr);
     }
 }

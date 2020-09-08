@@ -4,7 +4,40 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
+<!--let a = 5
+let b = "5"
+if (a == b){
+    alert("Võrdsed!");
+    } else{
+    alert("mitte võrdsed");
+    }-->
+
+<!--let element = document.getElementById("li");
+myElement.appendChild(myNewElement);
+myNewElement.innerHTML = "New text item";-->
+
 <body>
+<p id="test">
+    mingi tekst
+</p>
+
+<button onclick="alert ('Hello John.');">
+    Button
+</button>
+
+<button id="testButton2">
+    Test nupp 2
+</button>
+
+<button id="testButton3">
+    Test nupp 3
+</button>
+
+<button id="testButton5">
+    Test nupp 5
+</button>
+
 
 <a href="https://www.google.com/">Homepage </a>
 
@@ -14,7 +47,7 @@
 <h2 id="GOOGLE">Google</h2>
 
 
-<table width="763px" border="1" align="middle" cellpaddin="5" cellspacing="3">
+<table width="763px" border="1" align="middle" cellpadding="5" cellspacing="3">
 
     <tr align="right" valign="middle" bgcolor="#597172">
 
@@ -36,11 +69,12 @@
 
 <br>
 
-<input type="submit" name="submit" align="middle" value="Submit" />
-<input type="reset" name="reset" align="middle" value="Reset" />
-<input type="button" name="ok" align="middle" value="Ok" />
 
-<input type="email" name="E-mail" align="middle"/>
+<input id="submitbutton" type="submit" name="submit" align="middle" value="Submit"/>
+<!--<input type="reset" name="reset" align="middle" value="Reset"/>-->
+<!--<input type="button" name="ok" align="middle" value="Ok"/>-->
+
+<input id="aaa" type="text"/>
 
 <br>
 
@@ -63,14 +97,74 @@
     <dd>Definition of term</dd>
 </dl>
 
-<br>
-<br>
-<br>
+
 <br>
 <br>
 
-<img src="IMG2.jpg"/>
+<img src="IMG2.jpg" align="middle"/>
 
 
+<script>
+
+    let a = 1;
+    while(a<10) {
+    console.log(a);
+    a++;
+    }
+
+   let element = document.getElementById("test");
+    console.log(element);
+    console.log(element.innerHTML);
+    element.innerHTML = "uus 'tekst'";
+
+let button21 = document.getElementById("aaa");
+let button2 = document.getElementById("submitbutton");
+button2.onclick = function(){
+    alert(aaa.value);
+    submitbutton.value = aaa.value;
+
+}
+
+let button3 = document.getElementById("testButton3");
+let action = function(){
+    alert("3");
+}
+button3.addEventListener('click', action);
+
+
+
+let button5 = document.getElementById("testButton5");
+button5.addEventListener('click', function() {
+    alert("5")
+
+fetch('/allAccountsUUS', {
+    method: 'GET',
+    cache: 'no-cache',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        username: "username.value",
+        flag: true
+        })
+    })
+    .then(function(response) {
+        return response.json()
+    })
+    .then(function(jsonData) {
+        flag.value = '';
+        messages.innerText = jsonData.message;
+        updateBoard();
+    })
+    .catch(function(err) {
+    });
+  });
+button5.addEventListener('click', action);
+
+
+
+
+</script>
+<!--document.addEventListener('click', myFunction, false);-->
 </body>
 </html>

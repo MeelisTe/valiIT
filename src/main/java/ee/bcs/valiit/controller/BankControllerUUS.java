@@ -62,7 +62,7 @@ public class BankControllerUUS {
         accountService.createClient(client.getFirstName(), client.getLastName());
     }
 
-    @PostMapping("depositHistory/accountToId")
+    @PostMapping("depositHistory")
     public void depositHistory(@RequestBody Transfer deposit) {
         accountService.depositHistory(deposit.getAccountToId(), deposit.getAmount(), deposit.getAccountNr());
     }
