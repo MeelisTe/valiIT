@@ -1,7 +1,6 @@
 package ee.bcs.valiit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.integration.IntegrationProperties;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -49,7 +48,8 @@ public class AccountService {
     public String transferMoney(String accountNr1, String accountNr2, BigDecimal amount) {
         BigDecimal accountbalance = accountRepository.getAccountBalance(accountNr1, amount);
         if (accountbalance.compareTo(amount) > 0) {         // võrdleme kas kontol on piisavalt raha
-            accountRepository.transferMoney(accountNr1, accountNr2, amount);
+            accountRepository.withdrawMoney(accountNr1, amount);
+            accountRepository.depositMoney(accountNr2, amount);
             return "Transfer successful";
         } else {
             return "Transfer failed, not enough balance.";
@@ -87,5 +87,17 @@ public class AccountService {
     public void withdrawHistory(BigDecimal accountFromId, BigDecimal amount, String accountNr) {
         accountRepository.withdrawMoney(accountNr, amount);
         accountRepository.withdrawHistory(accountFromId, amount);
+    }
+
+    public String transferHistory(BigDecimal accountFromId, BigDecimal accountToId, BigDecimal amount, String accountNr) {
+        BigDecimal accountbalance = accountRepository.getAccountBalance(accountNr, amount);
+        if (accountbalance.compareTo(amount) > 0) {
+            accountRepository.withdrawMoney(accountNr, amount);
+            accountRepository.depositMoney(accountNr, amount);
+            accountRepository.transferHistory(accountFromId, accountToId, amount);
+            return "Transfer successful";
+        } else {
+            return "Transfer failed, not enough balance.";
+        }
     }
 }

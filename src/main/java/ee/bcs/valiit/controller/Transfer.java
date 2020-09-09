@@ -7,7 +7,24 @@ public class Transfer {
     private BigDecimal accountFromId;
     private BigDecimal accountToId;
     private String accountNr;
+    private String accountNr1;
+    private String accountNr2;
 
+    public String getAccountNr1() {
+        return accountNr1;
+    }
+
+    public void setAccountNr1(String accountNr1) {
+        this.accountNr1 = accountNr1;
+    }
+
+    public String getAccountNr2() {
+        return accountNr2;
+    }
+
+    public void setAccountNr2(String accountNr2) {
+        this.accountNr2 = accountNr2;
+    }
 
     public BigDecimal getAmount() {
         return amount;

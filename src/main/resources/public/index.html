@@ -110,8 +110,8 @@ myNewElement.innerHTML = "New text item";-->
 
 
     <input id="submitbutton" type="submit" name="submit" align="middle" value="Create client"/>
-    <input id="firstName" type="text" name="First name" align="middle" value=""/>
-    <input id="lastName" type="text" name="Last Name" align="middle" value=""/>
+    <input placeholder="First name" id="firstName" type="text" name="First name" align="middle" value=""/>
+    <input placeholder="Last name" id="lastName" type="text" name="Last Name" align="middle" value=""/>
     <!--<input type="reset" name="reset" align="middle" value="Reset"/>-->
     <!--<input type="button" name="ok" align="middle" value="Ok"/>-->
 
@@ -121,9 +121,18 @@ myNewElement.innerHTML = "New text item";-->
     <br>
 
     <input id="createAccount" type="submit" align="middle" value="Create account"/>
-    <input id="clientId" type="text" align="middle" value=""/>
-    <input id="balance" type="text" align="middle" value=""/>
-    <input id="accountNr" type="text" align="middle" value=""/>
+    <input placeholder="Client ID" id="clientId" type="text" align="middle" value=""/>
+    <input placeholder="Balance" id="balance" type="text" align="middle" value=""/>
+    <input placeholder="Account nr." id="accountNr" type="text" align="middle" value=""/>
+
+
+    <br>
+    <br>
+
+    <input id="transferMoney" type="submit" align="middle" value="Transfer Money"/>
+    <input placeholder="Account from ID" id="accountFromId" type="text" align="middle" value=""/>
+    <input placeholder="Account to ID" id="accountToId" type="text" align="middle" value=""/>
+    <input placeholder="Transfer amount" id="transferamount" type="text" align="middle" value=""/>
 
     <!--<dl>
         <dt>Term 1</dt>
@@ -312,6 +321,33 @@ myNewElement.innerHTML = "New text item";-->
             .catch(function (err) {
             });
     });
+
+  let buttonTransfer = document.getElementById("transferMoney");
+  buttonTransfer.addEventListener('click', function () {
+
+      fetch('/transferHistory', {
+          method: 'PUT',
+          cache: 'no-cache',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              accountFromId: accountFromId.value,
+              accountToId: accountToId.value,
+              amount: transferamount.value
+          })
+      })
+          .then(function (response) {
+              return response.json()
+          })
+          .then(function (jsonData) {
+              flag.value = '';
+              messages.innerText = jsonData.message;
+              updateBoard();
+          })
+          .catch(function (err) {
+          });
+  });
 
 
 </script>

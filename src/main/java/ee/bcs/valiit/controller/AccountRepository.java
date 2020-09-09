@@ -33,14 +33,6 @@ public class AccountRepository {
         return vastus;
     }
 
-    public void depositMoney(String accountNr, BigDecimal amount) {
-        String sql = "UPDATE account SET balance = balance + :balance WHERE account_nr = :account_nr";
-        Map<String, Object> paramMap = new HashMap();
-        paramMap.put("balance", amount);
-        paramMap.put("account_nr", accountNr);
-        jdbcTemplate.update(sql, paramMap);
-    }
-
 
     public BigDecimal getAccountBalance(String accountNr, BigDecimal amount) {
         String sql = "SELECT balance FROM account WHERE account_nr = :account_nr";
@@ -51,25 +43,21 @@ public class AccountRepository {
     }
 
 
+    public void depositMoney(String accountNr, BigDecimal amount) {
+        String sql = "UPDATE account SET balance = balance + :balance WHERE account_nr = :account_nr";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("balance", amount);
+        paramMap.put("account_nr", accountNr);
+        jdbcTemplate.update(sql, paramMap);
+    }
+
+
     public void withdrawMoney(String accountNr, BigDecimal amount) {
         String sql2 = "UPDATE account SET balance = balance - :balance WHERE account_nr = :account_nr";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("balance", amount);
         paramMap.put("account_nr", accountNr);
         jdbcTemplate.update(sql2, paramMap);
-    }
-
-    public void transferMoney(String accountNr1, String accountNr2, BigDecimal amount) {
-        String sql2 = "UPDATE account SET balance = balance - :balance WHERE account_nr = :account_nr";
-        Map<String, Object> paramMap = new HashMap();
-        paramMap.put("balance", amount);
-        paramMap.put("account_nr", accountNr1);
-        jdbcTemplate.update(sql2, paramMap);
-
-        String sql3 = "UPDATE account SET balance = balance + :balance WHERE account_nr = :account_nr";
-        paramMap.put("balance", amount);
-        paramMap.put("account_nr", accountNr2);
-        jdbcTemplate.update(sql3, paramMap);
     }
 
 
@@ -110,6 +98,15 @@ public class AccountRepository {
         String sql = "INSERT INTO credit_history(amount, account_from_id) values(:balance, :account_from_id)";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("account_from_id", accountFromId);
+        paramMap.put("balance", amount);
+        jdbcTemplate.update(sql, paramMap);
+    }
+
+    public void transferHistory(BigDecimal accountFromId, BigDecimal accountToId, BigDecimal amount) {
+        String sql = "INSERT INTO credit_history(amount, account_from_id) values(:balance, :account_from_id)";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("account_from_id", accountFromId);
+        paramMap.put("account_to_id", accountToId);
         paramMap.put("balance", amount);
         jdbcTemplate.update(sql, paramMap);
     }

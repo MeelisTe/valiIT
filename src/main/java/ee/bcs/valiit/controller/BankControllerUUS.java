@@ -50,6 +50,21 @@ public class BankControllerUUS {
         return accountService.transferMoney(accountNr1, accountNr2, amount);
     }
 
+    @PutMapping("depositHistory")
+    public void depositHistory(@RequestBody Transfer deposit) {
+        accountService.depositHistory(deposit.getAccountToId(), deposit.getAmount(), deposit.getAccountNr());
+    }
+
+    @PutMapping("withdrawHistory")
+    public void withdrawHistory(@RequestBody Transfer deposit) {
+        accountService.withdrawHistory(deposit.getAccountFromId(), deposit.getAmount(), deposit.getAccountNr());
+    }
+
+    @PutMapping("transferHistory")
+    public void transferHistory(@RequestBody Transfer deposit) {
+        accountService.transferHistory(deposit.getAccountFromId(), deposit.getAccountToId(), deposit.getAmount(), deposit.getAccountNr());
+    }
+
 
     @GetMapping("allAccountsUUS") // SQL
     public List<BankAccount> allAccountsUUS() {
@@ -75,15 +90,7 @@ public class BankControllerUUS {
         accountService.createClient(client.getFirstName(), client.getLastName());
     }
 
-    @PutMapping("depositHistory")
-    public void depositHistory(@RequestBody Transfer deposit) {
-        accountService.depositHistory(deposit.getAccountToId(), deposit.getAmount(), deposit.getAccountNr());
-    }
 
-    @PutMapping("withdrawHistory")
-    public void withdrawHistory(@RequestBody Transfer deposit) {
-        accountService.withdrawHistory(deposit.getAccountFromId(), deposit.getAmount(), deposit.getAccountNr());
-    }
 
 }
 

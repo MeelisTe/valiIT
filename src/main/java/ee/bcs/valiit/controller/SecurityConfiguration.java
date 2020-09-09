@@ -15,7 +15,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 //.antMatchers("/", "/home").permitAll()
-                .anyRequest().authenticated() //.permitAll() - käsuga pole vaja log-in'i
+                .anyRequest().permitAll() //.permitAll() - käsuga pole vaja log-in'i
                 .and()
                 .formLogin()
                 .permitAll()
