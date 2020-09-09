@@ -53,7 +53,20 @@ public class BankControllerUUS {
 
     @GetMapping("allAccountsUUS") // SQL
     public List<BankAccount> allAccountsUUS() {
+
         return accountService.allAccounts();
+    }
+
+    @GetMapping("allClientsUUS") // SQL
+    public List<CreateClient> allClientsUUS() {
+
+        return accountService.allClients();
+    }
+
+    @GetMapping("allCreditHistory") // SQL
+    public List<CreditHistory> allCreditHistory() {
+
+        return accountService.allCreditHistory();
     }
 
 
@@ -62,9 +75,14 @@ public class BankControllerUUS {
         accountService.createClient(client.getFirstName(), client.getLastName());
     }
 
-    @PostMapping("depositHistory")
+    @PutMapping("depositHistory")
     public void depositHistory(@RequestBody Transfer deposit) {
         accountService.depositHistory(deposit.getAccountToId(), deposit.getAmount(), deposit.getAccountNr());
+    }
+
+    @PutMapping("withdrawHistory")
+    public void withdrawHistory(@RequestBody Transfer deposit) {
+        accountService.withdrawHistory(deposit.getAccountFromId(), deposit.getAmount(), deposit.getAccountNr());
     }
 
 }

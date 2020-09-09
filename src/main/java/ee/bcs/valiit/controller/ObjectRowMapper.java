@@ -12,7 +12,8 @@ public class ObjectRowMapper implements RowMapper<BankAccount> {
     public BankAccount mapRow(ResultSet resultSet, int i) throws SQLException {
         BankAccount accounts = new BankAccount(); // loome muutuja accounts
         accounts.setAccountNr(resultSet.getString("account_nr")); //''account_nr'' nimetus(väärtus) tuleb Postgre'st account tabelist. getString - võtame account nr'i väärtuse. resultSet anname ''accounts.setAccountNr'' accountNr'le väärtuse, ''accounts.setAccountNr'' annab väärtuse klassi BankAccount ''account_Nr'' muutujale
-        accounts.setAmount(resultSet.getBigDecimal("balance"));
+        accounts.setBalance(resultSet.getBigDecimal("balance"));
+        accounts.setClientId(resultSet.getBigDecimal("client_id"));
         return accounts;
     }
 }

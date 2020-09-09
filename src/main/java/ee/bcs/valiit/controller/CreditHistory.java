@@ -2,12 +2,10 @@ package ee.bcs.valiit.controller;
 
 import java.math.BigDecimal;
 
-public class Transfer {
+public class CreditHistory {
     private BigDecimal amount;
     private BigDecimal accountFromId;
     private BigDecimal accountToId;
-    private String accountNr;
-
 
     public BigDecimal getAmount() {
         return amount;
@@ -31,13 +29,5 @@ public class Transfer {
 
     public void setAccountToId(BigDecimal accountToId) {
         this.accountToId = accountToId;
-    }
-
-    public String getAccountNr() {
-        return accountNr;
-    }
-
-    public void setAccountNr(String accountNr) {
-        this.accountNr = accountNr;
     }
 }

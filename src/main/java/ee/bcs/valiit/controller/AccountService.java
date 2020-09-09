@@ -1,6 +1,7 @@
 package ee.bcs.valiit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.integration.IntegrationProperties;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -58,17 +59,33 @@ public class AccountService {
 
 
     public List allAccounts() {
+
         return accountRepository.allAccounts();
     }
 
+    public List<CreateClient> allClients() {
+        return accountRepository.allClients();
+    }
 
-    public void createClient(String firstName, String  lastName) {
+    public List<CreditHistory> allCreditHistory() {
+        return accountRepository.allCreditHistory();
+    }
+
+
+    public void createClient(String firstName, String lastName) {
         accountRepository.createClient(firstName, lastName);
 
     }
 
 
     public void depositHistory(BigDecimal accountToId, BigDecimal amount, String accountNr) {
-        accountRepository.depositHistory(accountToId, amount, accountNr);
+        accountRepository.depositMoney(accountNr, amount);
+        accountRepository.depositHistory(accountToId, amount);
+    }
+
+
+    public void withdrawHistory(BigDecimal accountFromId, BigDecimal amount, String accountNr) {
+        accountRepository.withdrawMoney(accountNr, amount);
+        accountRepository.withdrawHistory(accountFromId, amount);
     }
 }

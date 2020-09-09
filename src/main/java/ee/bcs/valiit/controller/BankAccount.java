@@ -8,6 +8,7 @@ public class BankAccount {
     private BigDecimal balance;
     private BigDecimal clientId;
 
+
     public BigDecimal getBalance() {
         return balance;
     }
@@ -24,27 +25,14 @@ public class BankAccount {
         this.clientId = clientId;
     }
 
-    private BigDecimal amount;
-
-
-    private List<Transfer> transfers;
-    private String receiver;
-
     public void setAccountNr(String accountNr) {
         this.accountNr = accountNr;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
     }
 
     public String getAccountNr() {
         return accountNr;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
 
 }
 

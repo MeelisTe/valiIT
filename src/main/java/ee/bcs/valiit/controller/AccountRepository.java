@@ -78,6 +78,16 @@ public class AccountRepository {
         return jdbcTemplate.query(sql, new HashMap(), new ObjectRowMapper());
     }
 
+    public List<CreateClient> allClients() {
+        String sql = "SELECT * FROM client"; //select * - võtame kõik väärtused antud List'ist
+        return jdbcTemplate.query(sql, new HashMap(), new ObjectRowMapper2());
+    }
+
+    public List<CreditHistory> allCreditHistory() {
+        String sql = "SELECT * FROM credit_history"; //select * - võtame kõik väärtused antud List'ist
+        return jdbcTemplate.query(sql, new HashMap(), new ObjectRowMapper3());
+    }
+
     public void createClient(String firstName, String lastName) {
         String sql = "INSERT INTO client(first_name, last_name) values(:first_name, :last_name)";
         Map<String, Object> paramMap = new HashMap();
@@ -87,15 +97,21 @@ public class AccountRepository {
 
     }
 
-    public void depositHistory(BigDecimal account_to_id, BigDecimal amount, String accountNr) {
-        String sql = "UPDATE account SET balance = balance + :balance WHERE account_nr = :account_nr";
-        String sql1 = "INSERT INTO credit_history WHERE account_to_id = :account_to_id";
+    public void depositHistory(BigDecimal accountToId, BigDecimal amount) {
+        String sql = "INSERT INTO credit_history(amount, account_to_id) values(:balance, :account_to_id)";
         Map<String, Object> paramMap = new HashMap();
-        paramMap.put("account_to_id", account_to_id);
+        paramMap.put("account_to_id", accountToId);
         paramMap.put("balance", amount);
-        paramMap.put("account_nr", accountNr);
         jdbcTemplate.update(sql, paramMap);
-        jdbcTemplate.query(sql1, new HashMap(), new ObjectRowMapper());
+    }
+
+
+    public void withdrawHistory(BigDecimal accountFromId, BigDecimal amount) {
+        String sql = "INSERT INTO credit_history(amount, account_from_id) values(:balance, :account_from_id)";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("account_from_id", accountFromId);
+        paramMap.put("balance", amount);
+        jdbcTemplate.update(sql, paramMap);
     }
 }
 

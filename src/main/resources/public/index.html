@@ -1,9 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--<style>
+        body {background-color: powderblue;}
+        h1 {color: blue;}
+        p.test {color: red;}
+    </style>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Title</title>-->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 </head>
+
+<!--<!DOCTYPE html> - alljärgnev koodijupp loeb CSS stiili sisse file'ist styles.css
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>This is heading</h1>
+<p class="test">This is a paragraph.</p>
+
+</body>
+</html>-->
 
 <!--let a = 5
 let b = "5"
@@ -18,153 +39,283 @@ myElement.appendChild(myNewElement);
 myNewElement.innerHTML = "New text item";-->
 
 <body>
-<p id="test">
+    <h1>This is heading</h1>
+    <p class="test">This is a paragraph.</p>
+<!--<p id="test">
     mingi tekst
-</p>
+</p> -->
+<div align="center">
+    <a href="https://www.google.com/">Homepage </a>
 
-<button onclick="alert ('Hello John.');">
-    Button
-</button>
+    <br>
+    <br>
+    <br>
 
-<button id="testButton2">
-    Test nupp 2
-</button>
+    <!--<button onclick="alert ('Hello John.');">
+        Button
+    </button>-->
 
-<button id="testButton3">
-    Test nupp 3
-</button>
+    <!--<button id="testButton2">
+        Test nupp 2
+    </button>-->
 
-<button id="testButton5">
-    Test nupp 5
-</button>
+    <!--<button id="testButton3">
+        Test nupp 3
+    </button>-->
 
+    <button id="Account">
+        Account
+    </button> <!--allAccountsUUS-->
 
-<a href="https://www.google.com/">Homepage </a>
+    <button id="Client">
+        Client
+    </button>
 
-<br>
-<br>
+    <button id="CreditHistory">
+        Credit History
+    </button>
 
-<h2 id="GOOGLE">Google</h2>
+    <br>
+    <br>
 
-
-<table width="763px" border="1" align="middle" cellpadding="5" cellspacing="3">
-
-    <tr align="right" valign="middle" bgcolor="#597172">
-
-        <td height="50" colspan="8">
-
-        </td>
-
-        <td>
-        </td>
-
-    </tr>
-    <tr align="right" valign="middle" bgcolor="#397172">
-
-        <td height="50" colspan="8">
-
-        </td>
-    </tr>
-</table>
-
-<br>
+    <h2 id="GOOGLE" align="middle">Google</h2>
 
 
-<input id="submitbutton" type="submit" name="submit" align="middle" value="Submit"/>
-<!--<input type="reset" name="reset" align="middle" value="Reset"/>-->
-<!--<input type="button" name="ok" align="middle" value="Ok"/>-->
+    <table width="763px" border="1" align="middle" cellpadding="5" cellspacing="5">
 
-<input id="aaa" type="text"/>
+        <tr align="right" valign="middle" bgcolor="#597172">
 
-<br>
+            <td height="10" colspan="8">
 
+            </td>
 
-<ul>
-    <li>Bullet 1</li>
-    <li>Bullet 2</li>
-</ul>
+            <td height="10" colspan="8">
 
-<ol>
-    <li>Bullet 1</li>
-    <li>Bullet 2</li>
-</ol>
+            </td>
 
-<dl>
-    <dt>Term 1</dt>
+        </tr>
+        <tr align="right" valign="middle" bgcolor="#397172">
+
+            <td height="10" colspan="8">
+
+            </td>
+
+            <td height="10" colspan="8">
+
+            </td>
+        </tr>
+    </table>
 
     <br>
 
-    <dd>Definition of term</dd>
-</dl>
+
+    <input id="submitbutton" type="submit" name="submit" align="middle" value="Create client"/>
+    <input id="firstName" type="text" name="First name" align="middle" value=""/>
+    <input id="lastName" type="text" name="Last Name" align="middle" value=""/>
+    <!--<input type="reset" name="reset" align="middle" value="Reset"/>-->
+    <!--<input type="button" name="ok" align="middle" value="Ok"/>-->
+
+    <!--<input id="aaa" type="text"/>-->
+
+    <br>
+    <br>
+
+    <input id="createAccount" type="submit" align="middle" value="Create account"/>
+    <input id="clientId" type="text" align="middle" value=""/>
+    <input id="balance" type="text" align="middle" value=""/>
+    <input id="accountNr" type="text" align="middle" value=""/>
+
+    <!--<dl>
+        <dt>Term 1</dt>
+
+        <br>
+
+        <dd>Definition of term</dd>
+    </dl>-->
 
 
-<br>
-<br>
+    <br>
+    <br>
 
-<img src="IMG2.jpg" align="middle"/>
+    <img src="Bank.jpg" align="center"/>
 
-
+</div>
 <script>
 
-    let a = 1;
-    while(a<10) {
-    console.log(a);
-    a++;
+  /*  let a = 1;
+    while (a < 10) {
+        console.log(a);
+        a++;
     }
-
-   let element = document.getElementById("test");
-    console.log(element);
-    console.log(element.innerHTML);
-    element.innerHTML = "uus 'tekst'";
-
-let button21 = document.getElementById("aaa");
-let button2 = document.getElementById("submitbutton");
-button2.onclick = function(){
-    alert(aaa.value);
-    submitbutton.value = aaa.value;
-
-}
-
-let button3 = document.getElementById("testButton3");
-let action = function(){
-    alert("3");
-}
-button3.addEventListener('click', action);
+*/
+    /* let element = document.getElementById("test");
+     console.log(element);
+     console.log(element.innerHTML);
+     element.innerHTML = "uus 'tekst'"; */
 
 
+/*    let button2 = document.getElementById("submitbutton");
+    button2.onclick = function () {
+        alert("Full name added");
+     //   submitbutton.value = aaa.value;
 
-let button5 = document.getElementById("testButton5");
-button5.addEventListener('click', function() {
-    alert("5")
+    }*/
 
-fetch('/allAccountsUUS', {
-    method: 'GET',
-    cache: 'no-cache',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        username: "username.value",
-        flag: true
+/*    let button3 = document.getElementById("submitbutton");
+    let action = function () {
+        alert("3");
+    }
+    button3.addEventListener('click', action);*/
+
+
+  /*  let button5 = document.getElementById("submitbutton");
+    button5.addEventListener('click', function () {
+
+
+        fetch('/allAccountsUUS', {
+            method: 'GET',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
         })
-    })
-    .then(function(response) {
-        return response.json()
-    })
-    .then(function(jsonData) {
-        flag.value = '';
-        messages.innerText = jsonData.message;
-        updateBoard();
-    })
-    .catch(function(err) {
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (jsonData) {
+                flag.value = '';
+                messages.innerText = jsonData.message;
+                updateBoard();
+            })
+            .catch(function (err) {
+            });
     });
-  });
-button5.addEventListener('click', action);
+*/
+
+    let createAccount = document.getElementById("createAccount");
+    createAccount.addEventListener('click', function () {
 
 
+        fetch('/createAccountUUS', {
+            method: 'POST',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                clientId: clientId.value,
+                balance: balance.value,
+                accountNr: accountNr.value
+            })
+        })
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (jsonData) {
+                flag.value = '';
+                messages.innerText = jsonData.message;
+                updateBoard();
+            })
+            .catch(function (err) {
+            });
+    });
+
+    let createClient = document.getElementById("submitbutton");
+    createClient.addEventListener('click', function () {
+
+
+        fetch('/createClient', {
+            method: 'POST',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                firstName: firstName.value,
+                lastName: lastName.value
+            })
+        })
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (jsonData) {
+                flag.value = '';
+                messages.innerText = jsonData.message;
+                updateBoard();
+            })
+            .catch(function (err) {
+            });
+    });
+
+    let buttonAllAccounts = document.getElementById("Account");
+    buttonAllAccounts.addEventListener('click', function () {
+
+        fetch('/allAccountsUUS', {
+            method: 'GET',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (jsonData) {
+                flag.value = '';
+                messages.innerText = jsonData.message;
+                updateBoard();
+            })
+            .catch(function (err) {
+            });
+    });
+
+    let buttonAllClients = document.getElementById("Client");
+    buttonAllClients.addEventListener('click', function () {
+
+        fetch('/allClientsUUS', {
+            method: 'GET',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (jsonData) {
+                flag.value = '';
+                messages.innerText = jsonData.message;
+                updateBoard();
+            })
+            .catch(function (err) {
+            });
+    });
+
+    let buttonAllCreditHistory = document.getElementById("CreditHistory");
+    buttonAllCreditHistory.addEventListener('click', function () {
+
+        fetch('/allCreditHistory', {
+            method: 'GET',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (jsonData) {
+                flag.value = '';
+                messages.innerText = jsonData.message;
+                updateBoard();
+            })
+            .catch(function (err) {
+            });
+    });
 
 
 </script>
 <!--document.addEventListener('click', myFunction, false);-->
+
 </body>
 </html>

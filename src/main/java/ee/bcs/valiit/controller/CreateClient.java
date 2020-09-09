@@ -19,5 +19,4 @@ public class CreateClient {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
 }
