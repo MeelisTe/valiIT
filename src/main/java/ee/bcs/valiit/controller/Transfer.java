@@ -1,12 +1,12 @@
 package ee.bcs.valiit.controller;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 public class Transfer {
     private BigDecimal amount;
-    private BigDecimal accountFromId;
-    private BigDecimal accountToId;
-    private String accountNr;
+    private BigInteger accountFromId;
+    private BigInteger accountToId;
     private String accountNr1;
     private String accountNr2;
 
@@ -34,27 +34,21 @@ public class Transfer {
         this.amount = amount;
     }
 
-    public BigDecimal getAccountFromId() {
+    public BigInteger getAccountFromId() {
         return accountFromId;
     }
 
-    public void setAccountFromId(BigDecimal accountFromId) {
+    public void setAccountFromId(BigInteger accountFromId) {
         this.accountFromId = accountFromId;
     }
 
-    public BigDecimal getAccountToId() {
+    public BigInteger getAccountToId() {
         return accountToId;
     }
 
-    public void setAccountToId(BigDecimal accountToId) {
+    public void setAccountToId(BigInteger accountToId) {
         this.accountToId = accountToId;
     }
 
-    public String getAccountNr() {
-        return accountNr;
-    }
 
-    public void setAccountNr(String accountNr) {
-        this.accountNr = accountNr;
-    }
 }

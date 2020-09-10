@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -34,7 +35,7 @@ public class AccountService {
 
 
     public String withdrawMoney(String accountNr, BigDecimal amount) {
-        BigDecimal accountbalance = accountRepository.getAccountBalance(accountNr, amount);
+        BigDecimal accountbalance = accountRepository.getAccountBalance(accountNr);
         if (accountbalance.compareTo(amount) > 0) {         // võrdleme kas kontol on piisavalt raha
             accountRepository.withdrawMoney(accountNr, amount);
             return "Transfer successful";
@@ -46,7 +47,7 @@ public class AccountService {
 
 
     public String transferMoney(String accountNr1, String accountNr2, BigDecimal amount) {
-        BigDecimal accountbalance = accountRepository.getAccountBalance(accountNr1, amount);
+        BigDecimal accountbalance = accountRepository.getAccountBalance(accountNr1);
         if (accountbalance.compareTo(amount) > 0) {         // võrdleme kas kontol on piisavalt raha
             accountRepository.withdrawMoney(accountNr1, amount);
             accountRepository.depositMoney(accountNr2, amount);
@@ -78,26 +79,35 @@ public class AccountService {
     }
 
 
-    public void depositHistory(BigDecimal accountToId, BigDecimal amount, String accountNr) {
+    public void depositHistory(BigInteger accountToId, BigDecimal amount, String accountNr) {
         accountRepository.depositMoney(accountNr, amount);
         accountRepository.depositHistory(accountToId, amount);
     }
 
 
-    public void withdrawHistory(BigDecimal accountFromId, BigDecimal amount, String accountNr) {
+    public void withdrawHistory(BigInteger accountFromId, BigDecimal amount, String accountNr) {
         accountRepository.withdrawMoney(accountNr, amount);
         accountRepository.withdrawHistory(accountFromId, amount);
     }
 
-    public String transferHistory(BigDecimal accountFromId, BigDecimal accountToId, BigDecimal amount, String accountNr) {
-        BigDecimal accountbalance = accountRepository.getAccountBalance(accountNr, amount);
+
+
+    public String transfer(BigDecimal amount, String accountNr1, String accountNr2) {
+        BigDecimal accountbalance = accountRepository.getAccountBalance(accountNr1);
         if (accountbalance.compareTo(amount) > 0) {
-            accountRepository.withdrawMoney(accountNr, amount);
-            accountRepository.depositMoney(accountNr, amount);
-            accountRepository.transferHistory(accountFromId, accountToId, amount);
+            accountRepository.withdrawMoney(accountNr1, amount);
+            accountRepository.depositMoney(accountNr2, amount);
+            BigInteger accountFromId = accountRepository.getAccountIdByAccountNumber(accountNr1);
+            BigInteger accountToId = accountRepository.getAccountIdByAccountNumber(accountNr2);
+            accountRepository.transfer(accountFromId, accountToId, amount);
             return "Transfer successful";
         } else {
             return "Transfer failed, not enough balance.";
         }
+    }
+
+
+    public List<CreditHistory> accountTransferHistory() {
+        return accountRepository.accountTransferHistory();
     }
 }

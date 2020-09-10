@@ -9,7 +9,8 @@
     <meta charset="UTF-8">
     <title>Title</title>-->
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
 </head>
 
@@ -39,11 +40,14 @@ myElement.appendChild(myNewElement);
 myNewElement.innerHTML = "New text item";-->
 
 <body>
-    <h1>This is heading</h1>
-    <p class="test">This is a paragraph.</p>
+<h1>This is heading</h1>
+<p class="test">This is a paragraph.</p>
 <!--<p id="test">
     mingi tekst
 </p> -->
+
+<div id="myData"></div>
+
 <div align="center">
     <a href="https://www.google.com/">Homepage </a>
 
@@ -78,33 +82,37 @@ myNewElement.innerHTML = "New text item";-->
     <br>
     <br>
 
-    <h2 id="GOOGLE" align="middle">Google</h2>
+
+    <br>
+    <br>
+
+    <h2 id="Bank" align="middle">Bank</h2>
 
 
-    <table width="763px" border="1" align="middle" cellpadding="5" cellspacing="5">
+    <!--   <table width="763px" border="1" align="middle" cellpadding="5" cellspacing="5">
 
-        <tr align="right" valign="middle" bgcolor="#597172">
+           <tr align="right" valign="middle" bgcolor="#597172">
 
-            <td height="10" colspan="8">
+               <td height="10" colspan="8">
 
-            </td>
+               </td>
 
-            <td height="10" colspan="8">
+               <td height="10" colspan="8">
 
-            </td>
+               </td>
 
-        </tr>
-        <tr align="right" valign="middle" bgcolor="#397172">
+           </tr>
+           <tr align="right" valign="middle" bgcolor="#397172">
 
-            <td height="10" colspan="8">
+               <td height="10" colspan="8">
 
-            </td>
+               </td>
 
-            <td height="10" colspan="8">
+               <td height="10" colspan="8">
 
-            </td>
-        </tr>
-    </table>
+               </td>
+           </tr>
+       </table>-->
 
     <br>
 
@@ -130,8 +138,8 @@ myNewElement.innerHTML = "New text item";-->
     <br>
 
     <input id="transferMoney" type="submit" align="middle" value="Transfer Money"/>
-    <input placeholder="Account from ID" id="accountFromId" type="text" align="middle" value=""/>
-    <input placeholder="Account to ID" id="accountToId" type="text" align="middle" value=""/>
+    <input placeholder="Account nr. from" id="accountNrFrom" type="text" align="middle" value=""/>
+    <input placeholder="Account nr. to" id="accountNrTo" type="text" align="middle" value=""/>
     <input placeholder="Transfer amount" id="transferamount" type="text" align="middle" value=""/>
 
     <!--<dl>
@@ -142,6 +150,11 @@ myNewElement.innerHTML = "New text item";-->
         <dd>Definition of term</dd>
     </dl>-->
 
+    <br>
+    <br>
+
+    <input id="Display" type="submit" align="middle" value="Account transactions"/>
+    <input placeholder="Account nr" id="accountTransactions" type="text" align="middle" value=""/>
 
     <br>
     <br>
@@ -151,55 +164,55 @@ myNewElement.innerHTML = "New text item";-->
 </div>
 <script>
 
-  /*  let a = 1;
-    while (a < 10) {
-        console.log(a);
-        a++;
-    }
-*/
+    /*  let a = 1;
+      while (a < 10) {
+          console.log(a);
+          a++;
+      }
+  */
     /* let element = document.getElementById("test");
      console.log(element);
      console.log(element.innerHTML);
      element.innerHTML = "uus 'tekst'"; */
 
 
-/*    let button2 = document.getElementById("submitbutton");
-    button2.onclick = function () {
-        alert("Full name added");
-     //   submitbutton.value = aaa.value;
+    /*    let button2 = document.getElementById("submitbutton");
+        button2.onclick = function () {
+            alert("Full name added");
+         //   submitbutton.value = aaa.value;
 
-    }*/
+        }*/
 
-/*    let button3 = document.getElementById("submitbutton");
-    let action = function () {
-        alert("3");
-    }
-    button3.addEventListener('click', action);*/
-
-
-  /*  let button5 = document.getElementById("submitbutton");
-    button5.addEventListener('click', function () {
+    /*    let button3 = document.getElementById("submitbutton");
+        let action = function () {
+            alert("3");
+        }
+        button3.addEventListener('click', action);*/
 
 
-        fetch('/allAccountsUUS', {
-            method: 'GET',
-            cache: 'no-cache',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (jsonData) {
-                flag.value = '';
-                messages.innerText = jsonData.message;
-                updateBoard();
-            })
-            .catch(function (err) {
-            });
-    });
-*/
+    /*  let button5 = document.getElementById("submitbutton");
+      button5.addEventListener('click', function () {
+
+
+          fetch('/allAccountsUUS', {
+              method: 'GET',
+              cache: 'no-cache',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+          })
+              .then(function (response) {
+                  return response.json()
+              })
+              .then(function (jsonData) {
+                  flag.value = '';
+                  messages.innerText = jsonData.message;
+                  updateBoard();
+              })
+              .catch(function (err) {
+              });
+      });
+  */
 
     let createAccount = document.getElementById("createAccount");
     createAccount.addEventListener('click', function () {
@@ -303,6 +316,7 @@ myNewElement.innerHTML = "New text item";-->
     let buttonAllCreditHistory = document.getElementById("CreditHistory");
     buttonAllCreditHistory.addEventListener('click', function () {
 
+
         fetch('/allCreditHistory', {
             method: 'GET',
             cache: 'no-cache',
@@ -322,32 +336,62 @@ myNewElement.innerHTML = "New text item";-->
             });
     });
 
-  let buttonTransfer = document.getElementById("transferMoney");
-  buttonTransfer.addEventListener('click', function () {
+    let buttonTransfer = document.getElementById("transferMoney");
+    buttonTransfer.addEventListener('click', function () {
 
-      fetch('/transferHistory', {
-          method: 'PUT',
-          cache: 'no-cache',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              accountFromId: accountFromId.value,
-              accountToId: accountToId.value,
-              amount: transferamount.value
-          })
-      })
-          .then(function (response) {
-              return response.json()
-          })
-          .then(function (jsonData) {
-              flag.value = '';
-              messages.innerText = jsonData.message;
-              updateBoard();
-          })
-          .catch(function (err) {
-          });
-  });
+        fetch('/transfer', {
+            method: 'POST',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                accountNr1: accountNrFrom.value,
+                accountNr2: accountNrTo.value,
+                amount: transferamount.value
+            })
+        })
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (jsonData) {
+                flag.value = '';
+                messages.innerText = jsonData.message;
+                updateBoard();
+            })
+            .catch(function (err) {
+            });
+    });
+
+
+    let Display = document.getElementById("Display");
+    Display.addEventListener('click', function () {
+
+        fetch('/allCreditHistory',{
+
+            // + accountTransactions.value, {
+
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                appendData(data);
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+
+        function appendData(data) {
+            console.log(data);
+            var mainContainer = document.getElementById("myData");
+            for (var i = 0; i < data.length; i++) {
+                var div = document.createElement("div");
+                div.innerHTML = 'Transfer ' + i + ":" + ' ' + data[i].accountFromId + ' ' + data[i].accountToId + ' ' + data[i].amount;
+                mainContainer.appendChild(div);
+            }
+        }
+    });
 
 
 </script>

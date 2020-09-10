@@ -21,12 +21,6 @@ public class BankControllerUUS {
     private AccountService accountService;
 
 
-    @PostMapping("createAccountUUS") // SQL
-    public void createAccountUUS(@RequestBody BankAccount account) {
-        accountService.createAccountUUS(account.getClientId(), account.getAccountNr(), account.getBalance());
-
-    }
-
     @GetMapping("getAccountUUS/{accountNr}") // SQL
     public String getAccountUUS(@PathVariable("accountNr") String accountNr) {
         return accountService.getAccount(accountNr);
@@ -50,45 +44,12 @@ public class BankControllerUUS {
         return accountService.transferMoney(accountNr1, accountNr2, amount);
     }
 
-    @PutMapping("depositHistory")
-    public void depositHistory(@RequestBody Transfer deposit) {
-        accountService.depositHistory(deposit.getAccountToId(), deposit.getAmount(), deposit.getAccountNr());
-    }
-
-    @PutMapping("withdrawHistory")
-    public void withdrawHistory(@RequestBody Transfer deposit) {
-        accountService.withdrawHistory(deposit.getAccountFromId(), deposit.getAmount(), deposit.getAccountNr());
-    }
-
-    @PutMapping("transferHistory")
-    public void transferHistory(@RequestBody Transfer deposit) {
-        accountService.transferHistory(deposit.getAccountFromId(), deposit.getAccountToId(), deposit.getAmount(), deposit.getAccountNr());
-    }
 
 
-    @GetMapping("allAccountsUUS") // SQL
-    public List<BankAccount> allAccountsUUS() {
-
-        return accountService.allAccounts();
-    }
-
-    @GetMapping("allClientsUUS") // SQL
-    public List<CreateClient> allClientsUUS() {
-
-        return accountService.allClients();
-    }
-
-    @GetMapping("allCreditHistory") // SQL
-    public List<CreditHistory> allCreditHistory() {
-
-        return accountService.allCreditHistory();
-    }
 
 
-    @PostMapping("createClient") // SQL
-    public void createClient(@RequestBody CreateClient client) {
-        accountService.createClient(client.getFirstName(), client.getLastName());
-    }
+
+
 
 
 
