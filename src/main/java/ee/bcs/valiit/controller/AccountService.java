@@ -107,7 +107,11 @@ public class AccountService {
     }
 
 
-    public List<CreditHistory> accountTransferHistory() {
-        return accountRepository.accountTransferHistory();
+    public List<CreditHistory> accountTransferHistory(String accountNr1) {
+        BigInteger accountFromId = accountRepository.getAccountIdByAccountNumber(accountNr1);
+        accountRepository.accountTransferHistory(accountFromId);
+        return accountRepository.accountTransferHistory(accountFromId);
     }
+
+
 }

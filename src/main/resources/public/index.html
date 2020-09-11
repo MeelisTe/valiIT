@@ -367,9 +367,7 @@ myNewElement.innerHTML = "New text item";-->
     let Display = document.getElementById("Display");
     Display.addEventListener('click', function () {
 
-        fetch('/allCreditHistory',{
-
-            // + accountTransactions.value, {
+        fetch('accountTransferHistory/'+ accountTransactions.value, {
 
         })
             .then(function (response) {

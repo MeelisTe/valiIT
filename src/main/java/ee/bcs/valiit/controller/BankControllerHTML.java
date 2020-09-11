@@ -2,10 +2,7 @@ package ee.bcs.valiit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -67,11 +64,13 @@ public class BankControllerHTML {
         return accountService.allCreditHistory();
     }
 
-    @GetMapping("accountTransferHistory") // SQL
-    public List<CreditHistory> accountTransferHistory() {
+    @GetMapping("accountTransferHistory/{accountNr}") // SQL
+    public List<CreditHistory> accountTransferHistory(@PathVariable String accountNr) {
 
-        return accountService.accountTransferHistory();
+        return accountService.accountTransferHistory(accountNr);
     }
+
+
 
 
 }

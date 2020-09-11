@@ -119,9 +119,11 @@ public class AccountRepository {
         return jdbcTemplate.queryForObject(sql, paramMap, BigInteger.class);
     }
 
-    public List<CreditHistory> accountTransferHistory() {
-        String sql = "SELECT * FROM credit_history"; //select * - võtame kõik väärtused antud List'ist
-        return jdbcTemplate.query(sql, new HashMap(), new ObjectRowMapper3());
+    public List<CreditHistory> accountTransferHistory(BigInteger accountFromId) {
+        String sql = "SELECT * FROM credit_history WHERE account_from_id = :accountFromId"; //select * - võtame kõik väärtused antud List'ist
+        Map<String, BigInteger> paramMap = new HashMap<>();
+        paramMap.put("accountFromId", accountFromId);
+        return jdbcTemplate.query(sql, paramMap, new ObjectRowMapper3());
     }
 
 
